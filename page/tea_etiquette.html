@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>茶道礼仪文化</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: '宋体', 'SimSun', serif;
+            background-color: #f5f0eb;
+            color: #4a4a4a;
+            line-height: 1.6;
+            background: url('../images/tea_etiquette/bg1.jpg');
+        }
+
+       /* 导航栏整体样式 */
+.tea-navbar {
+    background: rgba(255,253,248,0.98);
+    box-shadow: 0 4px 20px rgba(61,84,56,0.08);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(6px);
+}
+
+.nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+}
+
+/* 品牌标识设计 */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.tea-logo {
+    width: 40px;
+    height: 40px;
+    opacity: 0.9;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.main-title {
+    font-family: '隶书', cursive;
+    color: #3d5438;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+}
+
+.sub-title {
+    font-family: '楷体', cursive;
+    color: #c5a173;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
+
+/* 导航菜单项样式 */
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    position: relative;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-family: '宋体', serif;
+    color: #666;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.5rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #c5a173;
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+    color: #3d5438;
+}
+
+.nav-item:hover::after {
+    left: 0;
+    width: 100%;
+}
+
+/* 流动装饰线 */
+.nav-divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    overflow: hidden;
+}
+
+.flow-line {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        #c5a173 30%, 
+        #3d5438 70%, 
+        transparent 100%
+    );
+    animation: flow 8s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes flow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: 64px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 64px);
+        background: rgba(255,255,255,0.98);
+        flex-direction: column;
+        padding: 2rem;
+        transition: left 0.3s ease;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        padding: 1rem;
+        border-bottom: 1px solid rgba(61,84,56,0.1);
+    }
+
+    .nav-toggle {
+        display: block;
+        background: none;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+    }
+
+    .toggle-bar {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: #3d5438;
+        margin: 4px 0;
+        transition: all 0.3s ease;
+    }
+
+    .nav-toggle.active .toggle-bar:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    .nav-toggle.active .toggle-bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle.active .toggle-bar:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+}
+
+/* 桌面端悬停特效 */
+@media (hover: hover) {
+    .nav-brand:hover .tea-logo {
+        animation: leaf-float 1.2s ease-in-out infinite;
+    }
+
+    .nav-item:hover .nav-icon {
+        animation: icon-bounce 0.6s ease;
+    }
+}
+
+@keyframes leaf-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-3px) rotate(3deg); }
+}
+
+@keyframes icon-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+        /* 主要内容区 */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        /* 礼仪卡片 */
+        .etiquette-card {
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .etiquette-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            color: #3d5438;
+            border-left: 4px solid #c5a173;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        /* 茶具网格布局 */
+    .tea-tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2rem;
+        padding: 1.5rem 0;
+    }
+
+    .tool-item {
+        background: #f3e6d1;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        text-align: center;
+    }
+
+    .tool-img-container {
+        position: relative;
+        overflow: hidden;
+        height: 220px;
+        background: #f8f5f1;
+    }
+
+    .tool-img {
+        width: 80%;
+        height: auto;
+        margin: 20px auto;
+        transition: transform 0.4s ease;
+    }
+
+    .tool-overlay {
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        background: rgba(61, 84, 56, 0.9);
+        color: white;
+        padding: 1rem;
+        transition: bottom 0.3s ease;
+    }
+
+    .tool-item:hover .tool-overlay {
+        bottom: 0;
+    }
+
+    .tool-item:hover .tool-img {
+        transform: scale(1.05);
+    }
+
+    .tool-name {
+        color: #3d5438;
+        margin: 1rem 0 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .tool-type {
+        color: #c5a173;
+        font-size: 0.9rem;
+        padding-bottom: 1rem;
+    }
+
+    @media (max-width: 480px) {
+        .tea-tools-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .tool-img-container {
+            height: 180px;
+        }
+    }
+
+        /* 弹窗样式 */
+.tea-modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(3px);
+}
+
+.modal-content {
+  position: relative;
+  background: white;
+  margin: 2% auto;
+  padding: 20px;
+  width: 70%;
+  max-width: 800px;
+  border-radius: 10px;
+  animation: modalSlide 0.3s ease-out;
+  display: flex;
+  gap: 30px;
+}
+
+@keyframes modalSlide {
+  from {transform: translateY(-50px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
+
+.modal-close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s;
+}
+
+.modal-close:hover {
+  color: #3d5438;
+}
+
+.modal-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.modal-img {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.modal-right {
+  flex: 1;
+  padding: 10px;
+}
+
+.modal-title {
+  color: #3d5438;
+  border-bottom: 2px solid #c5a173;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-specs li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dotted #ddd;
+}
+
+.modal-specs li span:first-child {
+  color: #666;
+  min-width: 80px;
+}
+
+.modal-specs li span:last-child {
+  color: #3d5438;
+  text-align: right;
+  max-width: 200px;
+}
+
+
+
+@media (max-width: 768px) {
+  .modal-content {
+    flex-direction: column;
+    width: 90%;
+    margin: 10% auto;
+  }
+  
+  .modal-left {
+    min-width: auto;
+  }
+  
+  .modal-img {
+    height: 250px;
+  }
+}
+
+
+        /* 时间轴样式 */
+       /* 时间轴增强样式 */
+       .timeline {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 32px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        #c5a173 0%, 
+        rgba(197,161,115,0.3) 100%);
+}
+
+.timeline-step {
+    position: relative;
+    margin-left: 80px;
+    padding: 25px 30px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-step:hover {
+    transform: translateX(10px);
+    box-shadow: 0 8px 30px rgba(61,84,56,0.1);
+}
+
+.step-icon {
+    position: absolute;
+    left: -56px;
+    top: 20px;
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    border: 2px solid #c5a173;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #3d5438;
+}
+
+h3[data-number]::before {
+    content: attr(data-number);
+    position: absolute;
+    left: -88px;
+    top: 8px;
+    font-family: '楷体', cursive;
+    color: #c5a173;
+    font-size: 1.8rem;
+}
+
+.step-tip {
+    padding: 8px 12px;
+    margin-top: 12px;
+    background: #f8f5f1;
+    border-left: 3px solid #c5a173;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* 动画效果 */
+.animate-slide {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideIn 0.6s ease forwards;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.steps-progress {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 500;
+}
+
+.progress-ring {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.ring-bg {
+  stroke: #f5f0eb;
+  stroke-width: 4;
+  fill: none;
+}
+
+.ring-fill {
+  stroke: #c5a173;
+  stroke-width: 4;
+  fill: none;
+  stroke-dasharray: 239;
+  stroke-dashoffset: 239;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.33,1,0.68,1);
+}
+
+.current-step {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: '楷体';
+  color: #3d5438;
+  font-size: 1.8rem;
+}
+
+.step-dots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.step-dot {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #c5a173;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.step-dot.active {
+  background: #3d5438;
+  transform: scale(1.4);
+  border-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .steps-progress {
+    right: 20px;
+  }
+  
+  .step-dot {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* 手势动画容器 */
+.gesture-canvas {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 40vw;
+  height: 60vh;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 200;
+}
+
+.motion-path {
+  stroke: rgba(197,161,115,0.3);
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 5 3;
+}
+
+.motion-cursor {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.6s ease-out;
+}
+
+.tea-drop {
+  width: 100%;
+  height: 100%;
+  animation: drop-float 2s infinite ease-in-out;
+}
+
+@keyframes drop-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* 步骤激活时的路径高亮 */
+.motion-path.active {
+  stroke: #c5a173;
+  animation: path-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes path-glow {
+  0%, 100% { stroke-opacity: 0.3; }
+  50% { stroke-opacity: 0.8; }
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px;
+    }
+    
+    .timeline-step {
+        margin-left: 60px;
+        padding: 20px;
+    }
+    
+    .step-icon {
+        left: -44px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    h3[data-number]::before {
+        left: -70px;
+        font-size: 1.4rem;
+    }
+}
+
+
+/* 礼仪规范模块样式 */
+.etiquette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1.5rem 0;
+}
+
+.etiquette-item {
+    background-image: url('../images/tea_etiquette/card-bg.jpg');
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 4px 12px rgba(61,84,56,0.08);
+}
+
+.etiquette-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(61,84,56,0.12);
+}
+
+.etiquette-icon {
+    flex: 0 0 60px;
+    margin-right: 1.5rem;
+}
+
+.tea-wave, .hand-icon {
+    width: 100%;
+    height: 60px;
+    stroke-width: 1.5;
+}
+
+.etiquette-content h3 {
+    color: #3d5438;
+    font-family: '楷体', cursive;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.etiquette-subtitle {
+    display: block;
+    color: #c5a173;
+    font-size: 0.9em;
+    margin-top: 0.2rem;
+}
+
+.etiquette-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease;
+}
+
+.etiquette-item:hover .etiquette-detail {
+    max-height: 200px;
+}
+
+.highlight {
+    color: #3d5438;
+    font-weight: 500;
+    padding: 0.1em 0.3em;
+    background: rgba(197,161,115,0.1);
+    border-radius: 4px;
+}
+
+/* 新增图标动画 */
+.setup-icon {
+    animation: arrange-flow 6s linear infinite;
+}
+
+@keyframes arrange-flow {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(3deg); }
+    75% { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.taboo-icon {
+    stroke-dasharray: 160;
+    animation: taboo-glow 2s ease-in-out infinite;
+}
+
+@keyframes taboo-glow {
+    50% { stroke-dashoffset: 80; }
+}
+
+/* 品茗姿势预览 */
+.posture-preview {
+    width: 120px;
+    height: 80px;
+    background: 
+        radial-gradient(circle at 30% 50%, #FFEBD6 25%, transparent),
+        linear-gradient(to right, #f5f0eb, #fff);
+    border-radius: 8px;
+    position: relative;
+}
+
+.posture-preview::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    width: 40px;
+    height: 40px;
+    background: url('gesture-preview.png') center/contain;
+    filter: drop-shadow(2px 2px 4px rgba(61,84,56,0.1));
+}
+
+/* 禁忌列表样式 */
+.taboo-list li {
+    position: relative;
+    padding-left: 1.5em;
+    transition: transform 0.3s ease;
+}
+
+
+
+.taboo-list li:hover {
+    transform: translateX(8px);
+}
+.order-icon {
+    animation: order-pulse 2s ease-in-out infinite;
+}
+
+@keyframes order-pulse {
+    50% { transform: rotate(10deg); }
+}
+
+.receive-icon path {
+    stroke-dasharray: 100;
+    animation: dash-flow 3s linear infinite;
+}
+
+@keyframes dash-flow {
+    to { stroke-dashoffset: 200; }
+}
+
+/* 奉茶顺序动画 */
+.order-animation {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.person-icon {
+    font-size: 1.8rem;
+    animation: person-bob 2s ease-in-out infinite;
+}
+
+@keyframes person-bob {
+    50% { transform: translateY(-5px); }
+}
+
+/* 叩指动画 */
+.knock-animation {
+    width: 40px;
+    height: 40px;
+    background: rgba(197,161,115,0.1);
+    border-radius: 50%;
+    position: relative;
+}
+
+.knock-animation::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #c5a173;
+    border-radius: 50%;
+    animation: knock-wave 1s infinite;
+}
+
+@keyframes knock-wave {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+/* 谢茶步骤编号 */
+.etiquette-detail p {
+    position: relative;
+    padding-left: 1.5em;
+}
+
+.etiquette-detail p::before {
+    content: attr(data-step);
+    position: absolute;
+    left: 0;
+    color: #c5a173;
+    font-family: '楷体';
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .etiquette-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .etiquette-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+.gif{
+    position: absolute;
+    right: 100px;
+    bottom: 30px;
+}
+img{
+    width: 200px;
+}
+    </style>
+</head>
+<body>
+    <nav class="tea-navbar">
+        <div class="nav-container">
+            <!-- Logo 区域增强 -->
+            <a href="#" class="nav-brand">
+                <svg class="tea-logo" viewBox="0 0 64 64">
+                    <path d="M32 12L50 28v24H14V28L32 12" fill="none" stroke="#3d5438" stroke-width="2"/>
+                    <path d="M24 40l8-8 8 8" stroke="#c5a173" stroke-width="2" fill="none"/>
+                    <circle cx="32" cy="48" r="4" fill="#3d5438"/>
+                </svg>
+                <span class="brand-text">
+                    <span class="main-title" style="font-family: m1Font">绿礼承芳</span>
+                    <span class="sub-title"  style="font-family: m1Font"> 茶道礼仪</span>
+                </span>
+            </a>
+    
+            <!-- 导航菜单增强 -->
+            <div class="nav-menu">
+                <a href="#tools" class="nav-item">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M12 2L3 7v10l9 5 9-5V7l-9-5zm0 16.5l-6-3.3v-6.4l6 3.3v6.4z"/></svg>
+                    茶具鉴识
+                </a>
+                <a href="#steps" class="nav-item">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zM12 7l-5 5h4v4h2v-4h4l-5-5z"/></svg>
+                    冲泡七示
+                </a>
+                <a href="#tips" class="nav-item">
+                    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm3 13h-2v6h-2v-6H9v-2h6v2z"/></svg>
+                    礼法精要
+                </a>
+            </div>
+    
+            <!-- 移动端菜单切换 -->
+            <button class="nav-toggle">
+                <span class="toggle-bar"></span>
+                <span class="toggle-bar"></span>
+                <span class="toggle-bar"></span>
+            </button>
+        </div>
+    
+        <!-- 流动装饰线 -->
+        <div class="nav-divider">
+            <div class="flow-line"></div>
+        </div>
+    </nav>
+    
+
+    <main class="container">
+        <section class="etiquette-card" id="tools">
+            <h2 class="card-title">茶具认知</h2>
+            <div class="tea-tools-grid">
+                <!-- 紫砂壶 -->
+                <div class="tool-item" 
+                     data-details='{
+                       "material": "紫砂泥料",
+                       "capacity": "200ml",
+                       "size": "12cm×8cm",
+                       "weight": "350g",
+                       "brew": "普洱、红茶",
+                       "feature": "双重气孔结构，透气不透水"
+                     }'>
+                    <div class="tool-img-container">
+                        <img src="../images/tea_etiquette/紫砂壶.jfif" alt="紫砂壶" class="tool-img">
+                        <div class="tool-overlay">
+                            <span class="tool-desc">泥料透气性好，适合冲泡发酵茶</span>
+                        </div>
+                    </div>
+                    <h3 class="tool-name">紫砂壶</h3>
+                    <p class="tool-type">主泡器具</p>
+                </div>
+            
+                <!-- 品茗杯 -->
+                <div class="tool-item" 
+                     data-details='{
+                       "material": "景德镇白瓷",
+                       "capacity": "30ml",
+                       "size": "Φ5cm×3cm",
+                       "weight": "60g",
+                       "brew": "所有茶类",
+                       "feature": "釉面光滑不吸味"
+                     }'>
+                    <div class="tool-img-container">
+                        <img src="../images/tea_etiquette/品茗杯.jpg" alt="品茗杯" class="tool-img">
+                        <div class="tool-overlay">
+                            <span class="tool-desc">白瓷显茶色，闻香观汤两相宜</span>
+                        </div>
+                    </div>
+                    <h3 class="tool-name">品茗杯</h3>
+                    <p class="tool-type">品饮器具</p>
+                </div>
+            
+                <!-- 茶道六君子 -->
+                <div class="tool-item" 
+                     data-details='{
+                       "material": "竹木/金属",
+                       "components": "茶则、茶针、茶漏、茶夹、茶匙、茶筒",
+                       "size": "茶筒18cm",
+                       "weight": "200g",
+                       "feature": "茶事操作六件套"
+                     }'>
+                    <div class="tool-img-container">
+                        <img src="../images/tea_etiquette/茶道六君子.jpg" alt="茶道六君子" class="tool-img">
+                        <div class="tool-overlay">
+                            <span class="tool-desc">茶事必备工具套装</span>
+                        </div>
+                    </div>
+                    <h3 class="tool-name">茶道六君子</h3>
+                    <p class="tool-type">辅助工具</p>
+                </div>
+            
+                <!-- 茶海（公道杯） -->
+                <div class="tool-item" 
+                     data-details='{
+                       "material": "玻璃材质",
+                       "capacity": "300ml",
+                       "size": "Φ8cm×10cm",
+                       "weight": "180g",
+                       "feature": "鹰嘴设计方便控流"
+                     }'>
+                    <div class="tool-img-container">
+                        <img src="../images/tea_etiquette/茶海.jpg" alt="茶海" class="tool-img">
+                        <div class="tool-overlay">
+                            <span class="tool-desc">均匀茶汤，沉淀茶渣</span>
+                        </div>
+                    </div>
+                    <h3 class="tool-name">茶海</h3>
+                    <p class="tool-type">分茶器具</p>
+                </div>
+            
+        </section>
+
+        <section class="etiquette-card" id="steps">
+            <h2 class="card-title">冲泡七式</h2>
+
+            <div class="steps-progress">
+                <div class="progress-ring">
+                  <svg width="80" height="80">
+                    <circle class="ring-bg" cx="40" cy="40" r="38"/>
+                    <circle class="ring-fill" cx="40" cy="40" r="38"/>
+                  </svg>
+                  <div class="current-step">壹</div>
+                </div>
+                <div class="step-dots">
+                  <div class="step-dot" data-step="1"></div>
+                  <div class="step-dot" data-step="2"></div>
+                  <div class="step-dot" data-step="3"></div>
+                  <div class="step-dot" data-step="4"></div>
+                  <div class="step-dot" data-step="5"></div>
+                  <div class="step-dot" data-step="6"></div>
+                  <div class="step-dot" data-step="7"></div>
+                </div>
+              </div>
+
+            <div class="timeline">
+                <!-- 步骤1 -->
+                <div class="timeline-step animate-slide">
+                    <div class="step-icon">🍃</div>
+                    <h3 data-number="壹">备茶赏形</h3>
+                    <p>取茶置于茶荷，宾主共赏干茶形态</p>
+                    <div class="step-tip">推荐角度：45度斜持茶荷</div>
+                </div>
+        
+                <!-- 步骤2 -->
+                <div class="timeline-step animate-slide">
+                    <div class="step-icon">🔥</div>
+                    <h3 data-number="贰">温杯洁具</h3>
+                    <p>沸水依次温烫盖碗→公道杯→品茗杯</p>
+                    <div class="step-tip">温度建议：95℃以上沸水</div>
+                </div>
+        
+                <!-- 步骤3 -->
+                <div class="timeline-step animate-slide">
+                    <div class="step-icon">⛰️</div>
+                    <h3 data-number="叁">佳茗入宫</h3>
+                    <p>按1:20茶水比投茶，轻摇盖碗闻干香</p>
+                    <div class="step-tip">绿茶3克/乌龙茶8克</div>
+                </div>
+        
+                <!-- 步骤4 -->
+                <div class="timeline-step animate-slide">
+                    <div class="step-icon">🌊</div>
+                    <h3 data-number="肆">润茶醒香</h3>
+                    <p>快速注水即出，激活茶叶内质</p>
+                    <div class="step-tip">首泡茶汤可用于烫杯</div>
+                </div>
+        
+                <!-- 步骤5 -->
+                <div class="timeline-step animate-slide">
+                    <div class="step-icon">⌛</div>
+                    <h3 data-number="伍">凤凰三点头</h3>
+                    <p>高冲低斟三次，水线连绵不断</p>
+                    <div class="step-tip">绿茶注水法：水位七分满</div>
+                </div>
+        
+                <!-- 步骤6 -->
+                <div class="timeline-step animate-slide">
+                    <div class="step-icon">🍵</div>
+                    <h3 data-number="陆">玉液回壶</h3>
+                    <p>静候10-30秒，依茶类控制出汤时间</p>
+                    <div class="step-tip">普洱：15秒，白茶：20秒</div>
+                </div>
+        
+                <!-- 步骤7 -->
+                <div class="timeline-step animate-slide">
+                    <div class="step-icon">🙏</div>
+                    <h3 data-number="柒">礼敬奉茶</h3>
+                    <p>双手托杯沿，举案齐眉敬宾客</p>
+                    <div class="step-tip">杯托朝向客人右手侧</div>
+                </div>
+            </div>
+
+            <!-- 手势动画容器 -->
+            <div class="gesture-canvas">
+                <svg class="motion-paths">
+                <!-- 各步骤预定义路径 -->
+                <path id="path-warm" class="motion-path" 
+                        d="M20% 80 Q50% 20 80% 80" 
+                        data-step="2"/>
+                <path id="path-pour" class="motion-path"
+                        d="M30% 30 C40% 0 60% 0 70% 30"
+                        data-step="5"/>
+                </svg>
+                
+                <!-- 动态指针 -->
+                <div class="motion-cursor">
+                <svg class="tea-drop"><use href="#tea-drop-icon"></svg>
+                </div>
+            </div>
+        </section>
+
+        <section class="etiquette-card" id="tips">
+            <h2 class="card-title">茶礼十规</h2>
+            
+            <div class="etiquette-grid">
+
+                <!-- 斟茶礼仪 -->
+                <div class="etiquette-item" data-category="pour">
+                    <div class="etiquette-icon">
+                        <svg viewBox="0 0 64 64" class="tea-wave">
+                            <path d="M16 44c12-8 24-6 32 2" stroke="#3d5438" fill="none"/>
+                            <circle cx="32" cy="50" r="4" fill="#c5a173"/>
+                        </svg>
+                    </div>
+                    <div class="etiquette-content">
+                        <h3>斟茶七分满<span class="etiquette-subtitle">三分人情暖</span></h3>
+                        <div class="etiquette-detail">
+                            <p>茶量标准：<span class="highlight">70%容量</span></p>
+                            <p>持壶角度：<span class="highlight">45度斜倾</span></p>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 奉茶礼仪 -->
+                <div class="etiquette-item" data-category="serve">
+                    <div class="etiquette-icon">
+                        <svg viewBox="0 0 64 64" class="hand-icon">
+                            <path d="M24 40l8-6 6 8 8-12" stroke="#3d5438" fill="none"/>
+                            <circle cx="40" cy="32" r="3" fill="#c5a173"/>
+                        </svg>
+                    </div>
+                    <div class="etiquette-content">
+                        <h3>举案齐眉<span class="etiquette-subtitle">礼敬显诚心</span></h3>
+                        <div class="etiquette-detail">
+                            <p>杯托朝向：<span class="highlight">客方右手侧</span></p>
+                            <p>奉茶高度：<span class="highlight">与肩同齐</span></p>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- 茶具摆放规范 -->
+                <div class="etiquette-item" data-category="arrangement">
+                    <div class="etiquette-icon">
+                        <svg class="setup-icon" viewBox="0 0 64 64">
+                            <path d="M20 44L32 20 44 44" stroke="#3d5438" fill="none"/>
+                            <circle cx="32" cy="50" r="6" fill="#c5a173"/>
+                            <rect x="16" y="48" width="32" height="8" rx="2" fill="#FFEBD6"/>
+                        </svg>
+                    </div>
+                    <div class="etiquette-content">
+                        <h3>茶器定位<span class="etiquette-subtitle">阴阳有序</span></h3>
+                        <div class="etiquette-detail">
+                            <p>主泡器：<span class="highlight">青龙位（左）</span></p>
+                            <p>公道杯：<span class="highlight">白虎位（右）</span></p>
+                            <p>茶道组：<span class="highlight">朱雀位（前）</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 品茗姿势规范 -->
+                <div class="etiquette-item" data-category="posture">
+                    <div class="etiquette-icon">
+                        <svg class="posture-icon" viewBox="0 0 64 64">
+                            <path d="M24 40Q30 28 40 32" stroke="#3d5438" fill="none"/>
+                            <circle cx="32" cy="24" r="4" fill="#c5a173"/>
+                            <path d="M28 48L36 48" stroke="#E8D0B5" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="etiquette-content">
+                        <h3>三龙护鼎<span class="etiquette-subtitle">持杯之道</span></h3>
+                        <div class="etiquette-detail">
+                            <p>拇指食指握杯沿</p>
+                            <p>中指托底<span class="highlight">谓之三才</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 茶席禁忌 -->
+                <div class="etiquette-item" data-category="taboo">
+                    <div class="etiquette-icon">
+                        <svg class="taboo-icon" viewBox="0 0 64 64">
+                            <circle cx="32" cy="32" r="24" stroke="#3d5438" fill="none"/>
+                            <path d="M20 20L44 44M44 20L20 44" stroke="#c5a173" stroke-width="3"/>
+                        </svg>
+                    </div>
+                    <div class="etiquette-content">
+                        <h3>五不原则<span class="etiquette-subtitle">避忌守礼</span></h3>
+                        <div class="etiquette-detail">
+                            <ul class="taboo-list">
+                                <li>✖ 壶口对人</li>
+                                <li>✖ 逆时针斟茶</li>
+                                <li>✖ 单手持杯</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 续茶礼节 -->
+                <div class="etiquette-item" data-category="refill">
+                    <div class="etiquette-icon">
+                        <svg class="refill-icon" viewBox="0 0 64 64">
+                            <path d="M24 40L40 24" stroke="#3d5438" stroke-width="2"/>
+                            <circle cx="24" cy="40" r="4" fill="#c5a173"/>
+                            <circle cx="40" cy="24" r="4" fill="#c5a173"/>
+                        </svg>
+                    </div>
+                    <div class="etiquette-content">
+                        <h3>先客后主<span class="etiquette-subtitle">续茶之序</span></h3>
+                        <div class="etiquette-detail">
+                            <p>尊长者优先</p>
+                            <p>顺时针方向<span class="highlight">由右及左</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 清洁规范 -->
+                <div class="etiquette-item" data-category="clean">
+                    <div class="etiquette-icon">
+                        <svg class="clean-icon" viewBox="0 0 64 64">
+                            <path d="M28 36L36 28" stroke="#3d5438" stroke-width="2"/>
+                            <circle cx="32" cy="32" r="8" fill="none" stroke="#c5a173"/>
+                        </svg>
+                    </div>
+                    <div class="etiquette-content">
+                        <h3>涤器净心<span class="etiquette-subtitle">洁具之道</span></h3>
+                        <div class="etiquette-detail">
+                            <p>温杯顺序：<span class="highlight">盖碗→公道杯→品茗杯</span></p>
+                            <p>清洁手法：<span class="highlight">内旋三周</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 奉茶顺序 -->
+                <div class="etiquette-item" data-category="serve-order">
+                    <div class="etiquette-icon">
+                        <svg class="order-icon" viewBox="0 0 64 64">
+                            <path d="M24 24L40 40M40 24L24 40" stroke="#3d5438" fill="none"/>
+                            <circle cx="32" cy="32" r="8" stroke="#c5a173" fill="none"/>
+                            <path d="M20 48L44 48" stroke="#E8D0B5" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="etiquette-content">
+                        <h3>长幼有序<span class="etiquette-subtitle">奉茶之序</span></h3>
+                        <div class="etiquette-detail">
+                            <ol class="serve-order">
+                                <li>尊长者先</li>
+                                <li>女士优先</li>
+                                <li>顺时针轮转</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 受茶礼节 -->
+                <div class="etiquette-item" data-category="receive">
+                    <div class="etiquette-icon">
+                        <svg class="receive-icon" viewBox="0 0 64 64">
+                            <path d="M24 32L32 24 40 32" stroke="#3d5438" fill="none"/>
+                            <circle cx="32" cy="40" r="4" fill="#c5a173"/>
+                            <rect x="28" y="44" width="8" height="12" rx="2" fill="#FFEBD6"/>
+                        </svg>
+                    </div>
+                    <div class="etiquette-content">
+                        <h3>叩指谢茶<span class="etiquette-subtitle">受茶之礼</span></h3>
+                        <div class="etiquette-detail">
+                            <p>长辈赐茶：<span class="highlight">五指并拢轻叩桌面三下</span></p>
+                            <p>平辈受茶：<span class="highlight">食中二指曲叩两次</span></p>
+                            <div class="knock-animation"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 谢茶礼仪 -->
+                <div class="etiquette-item" data-category="thanks">
+                    <div class="etiquette-icon">
+                        <svg class="thanks-icon" viewBox="0 0 64 64">
+                            <path d="M32 20L40 36 24 36" stroke="#c5a173" fill="none"/>
+                            <circle cx="32" cy="44" r="8" stroke="#3d5438" fill="none"/>
+                            <path d="M28 48L36 48" stroke="#E8D0B5" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="etiquette-content">
+                        <h3>三转谢杯<span class="etiquette-subtitle">品毕之仪</span></h3>
+                        <div class="etiquette-detail">
+                            <p>1. 杯底向主<span class="highlight">示饮尽</span></p>
+                            <p>2. 轻旋杯身<span class="highlight">赏器形</span></p>
+                            <p>3. 原向奉还<span class="highlight">表谢意</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gif">
+                    <img src="../images/tea_etiquette/手绘古风茶饮.gif" alt="">
+                </div>
+        </section>
+
+        <!-- 弹窗结构 -->
+        <div class="tea-modal" id="detailModal">
+        <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <div class="modal-left">
+            <img src="" alt="茶具大图" class="modal-img">
+        </div>
+        <div class="modal-right">
+            <h3 class="modal-title"></h3>
+            <ul class="modal-specs"></ul>
+        </div>
+        </div>
+        </div>
+    </main>
+
+    <script>
+        // 移动端菜单切换
+document.querySelector('.nav-toggle').addEventListener('click', function() {
+    this.classList.toggle('active');
+    document.querySelector('.nav-menu').classList.toggle('active');
+});
+
+// 滚动监听高亮当前章节
+window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-item');
+    let current = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 100) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href').includes(current)) {
+            item.classList.add('active');
+        }
+    });
+});
+
+// 平滑滚动
+document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(item.getAttribute('href'));
+        target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
+});
+
+        // 卡片交互动画
+        document.querySelectorAll('.etiquette-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+         // 弹窗交互逻辑
+         document.querySelectorAll('.tool-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const modal = document.getElementById('detailModal');
+                const details = JSON.parse(item.dataset.details);
+                
+                // 设置弹窗内容
+                const imgSrc = item.querySelector('img').src.replace('-thumb', '-large');
+                modal.querySelector('.modal-img').src = imgSrc;
+                modal.querySelector('.modal-title').textContent = item.querySelector('.tool-name').textContent;
+                
+                // 构建参数列表
+                const specsHtml = Object.entries(details)
+                    .map(([key, value]) => `
+                        <li>
+                            <span>${getSpecLabel(key)}</span>
+                            <span>${value}</span>
+                        </li>
+                    `).join('');
+                
+                modal.querySelector('.modal-specs').innerHTML = specsHtml;
+                modal.style.display = 'block';
+            });
+        });
+
+        // 关闭弹窗逻辑
+        document.querySelector('.modal-close').addEventListener('click', closeModal);
+        window.addEventListener('keydown', (e) => e.key === 'Escape' && closeModal());
+        window.addEventListener('click', (e) => e.target.classList.contains('tea-modal') && closeModal());
+
+        function closeModal() {
+            document.getElementById('detailModal').style.display = 'none';
+        }
+
+        function getSpecLabel(key) {
+            const labels = {
+                material: '材质',
+                capacity: '容量',
+                size: '尺寸',
+                weight: '重量',
+                brew: '适用茶类',
+                feature: '特点'
+            };
+            return labels[key] || key;
+        }
+
+
+        // step
+        // 交互动画触发
+document.addEventListener('DOMContentLoaded', () => {
+    const steps = document.querySelectorAll('.timeline-step');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationDelay = `${entry.target.dataset.delay || 0}s`;
+                entry.target.classList.add('animate-slide');
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+
+    steps.forEach((step, index) => {
+        step.dataset.delay = index * 0.15;
+        observer.observe(step);
+    });
+});
+
+// 步骤追踪逻辑
+const stepObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      const stepIndex = parseInt(entry.target.dataset.step);
+      updateProgress(stepIndex);
+    }
+  });
+}, { threshold: 0.5 });
+
+// 初始化观察
+document.querySelectorAll('.timeline-step').forEach((step, index) => {
+  step.dataset.step = index + 1;
+  stepObserver.observe(step);
+});
+
+function updateProgress(currentStep) {
+  // 更新环形进度
+  const circumference = 2 * Math.PI * 38;
+  const progress = (currentStep - 1) / 7;
+  const offset = circumference - (progress * circumference);
+  document.querySelector('.ring-fill').style.strokeDashoffset = offset;
+
+  // 更新当前步骤编号
+  const chineseNumbers = ['壹','贰','叁','肆','伍','陆','柒'];
+  document.querySelector('.current-step').textContent = chineseNumbers[currentStep - 1];
+
+  // 更新步骤点状态
+  document.querySelectorAll('.step-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index < currentStep);
+  });
+}
+
+// 点击步骤点跳转
+document.querySelectorAll('.step-dot').forEach((dot, index) => {
+  dot.addEventListener('click', () => {
+    const targetStep = document.querySelector(`[data-step="${index + 1}"]`);
+    targetStep.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'center'
+    });
+  });
+});
+
+class GestureAnimation {
+  constructor() {
+    this.paths = document.querySelectorAll('.motion-path');
+    this.cursor = document.querySelector('.motion-cursor');
+    this.currentAnim = null;
+    
+    // 绑定步骤观察器
+    this.setupObservers();
+  }
+
+  setupObservers() {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          this.playPathAnimation(entry.target.dataset.step);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.timeline-step').forEach(step => {
+      observer.observe(step);
+    });
+  }
+
+  playPathAnimation(stepNumber) {
+    // 停止当前动画
+    if(this.currentAnim) {
+      this.currentAnim.pause();
+      this.cursor.style.opacity = 0;
+    }
+
+    const path = Array.from(this.paths).find(p => p.dataset.step === stepNumber);
+    if(!path) return;
+
+    // 创建路径动画
+    const pathLength = path.getTotalLength();
+    const duration = pathLength * 15; // 根据路径长度动态计算时间
+    
+    this.cursor.style.opacity = 1;
+    this.cursor.style.transform = `
+      translate(${path.getPointAtLength(0).x}px, 
+               ${path.getPointAtLength(0).y}px)
+    `;
+
+    this.currentAnim = this.cursor.animate([
+      { transform: `translate(${path.getPointAtLength(0).x}px, 
+                              ${path.getPointAtLength(0).y}px)` },
+      { transform: `translate(${path.getPointAtLength(pathLength).x}px, 
+                              ${path.getPointAtLength(pathLength).y}px)` }
+    ], {
+      duration: duration,
+      easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+    });
+
+    // 路径高亮联动
+    path.classList.add('active');
+    this.currentAnim.onfinish = () => path.classList.remove('active');
+  }
+}
+let isRecording = false;
+let recordedPath = [];
+
+canvas.addEventListener('touchstart', () => {
+  isRecording = true;
+  recordedPath = [];
+});
+
+canvas.addEventListener('touchmove', (e) => {
+  if(isRecording) {
+    recordedPath.push({x: e.touches[0].clientX, y: e.touches[0].clientY});
+  }
+});
+
+canvas.addEventListener('touchend', () => {
+  isRecording = false;
+  analyzeGesture(recordedPath);
+});
+
+// 初始化动画系统
+const gestureAnim = new GestureAnimation();
+
+
+// 交互增强脚本
+document.querySelectorAll('.etiquette-item').forEach(item => {
+    // 点击展开详细信息
+    item.addEventListener('click', () => {
+        const detail = item.querySelector('.etiquette-detail');
+        detail.style.maxHeight = detail.style.maxHeight ? null : `${detail.scrollHeight}px`;
+    });
+
+    // 键盘导航支持
+    item.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter') {
+            item.click();
+        }
+    });
+});
+// 新增交互逻辑
+document.querySelectorAll('.knock-animation').forEach(anim => {
+    let count = 0;
+    anim.addEventListener('click', () => {
+        if(count++ % 2 === 0) {
+            anim.style.animation = 'knock-effect 0.3s ease';
+        }
+    });
+});
+
+// 奉茶顺序拖拽排序
+const orderAnimation = document.querySelector('.order-animation');
+new Sortable(orderAnimation, {
+    animation: 150,
+    handle: '.person-icon',
+    onUpdate: () => playOrderHint()
+});
+
+function playOrderHint() {
+    const icons = document.querySelectorAll('.person-icon');
+    icons.forEach((icon, i) => {
+        setTimeout(() => {
+            icon.style.transform = 'scale(1.2)';
+            setTimeout(() => icon.style.transform = '', 300);
+        }, i * 200);
+    });
+}
+
+    </script>
+</body>
+</html>

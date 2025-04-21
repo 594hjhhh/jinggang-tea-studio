@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>茶艺表演</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        body {
+            background: var(--bg-color);
+            font-family: "FangSong", "仿宋", STFangsong, "华文仿宋", serif;
+            background-image: url('../images/tea_etiquette/bg1.jpg');
+        }
+
+
+        /* 传统工艺样式 */
+        :root {
+            --primary-color: #4A593D;     /* 更深沉的茶青色 */
+            --secondary-color: #8E7757;   /* 温润的茶褐色 */
+            --accent-color: #C7B7A3;      /* 典雅的米褐色 */
+            --bg-color: #F9F6F1;         /* 温和的米白底色 */
+            --process-red: #D32F2F;
+        }
+
+        .traditional-section {
+            padding: 40px 0;
+        }
+
+        .master-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+
+        .introduction-box {
+        grid-column: 1 / -1;
+        border-radius: 15px;
+        margin-bottom: 0px;
+        box-shadow: 2px 4px 15px rgba(0,0,0,0.05);    }
+
+
+    .introduction-box h2 {
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        font-size: 1.8em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+        letter-spacing: 0.1em;
+    }
+
+    .introduction-box p {
+        color: #666;
+        line-height: 1.8;
+        font-size: 1.1em;
+        margin: 0;
+    }
+
+    /* 添加水墨效果装饰 */
+    .introduction-box::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        width: 60px;
+        height: 60px;
+        background: url('ink-decoration.png') no-repeat center/contain;
+        opacity: 0.15;
+        pointer-events: none;
+    }
+
+    /* 优化茶具展示 */
+    .equipment-showcase .item {
+        position: relative;
+        padding: 20px;
+        border: 1px solid var(--accent-color);
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .equipment-showcase .item:hover {
+        transform: translateY(-5px);
+    }
+
+    /* 添加传统纹样背景 */
+    .quiz-container {
+        background: rgba(255,255,255,0.95);
+        background-image: url('traditional-pattern.png');
+        background-blend-mode: overlay;
+        background-size: 200px;
+        background-repeat: repeat;
+    }
+
+@keyframes highlight {
+    0% { background: rgba(107, 142, 35, 0.1); }
+    100% { background: transparent; }
+}
+
+
+
+.steps-container {
+            width: 1200px;
+            height: 400px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            margin-left: 120px;
+        }
+
+        .step-card {
+            position: absolute;
+            width: 100%;
+            height: 320px;
+            padding: 30px;
+            display: flex;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.98);
+        }
+
+        #slide_1:checked ~ .card-1,
+        #slide_2:checked ~ .card-2,
+        #slide_3:checked ~ .card-3 {
+            opacity: 1;
+            z-index: 2;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        .step-card .img {
+            width: 240px;
+            height: 240px;
+            border-radius: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            margin-right: 100px;
+        }
+
+        .step-slider {
+            position: absolute;
+            bottom: 20px;
+            left: 65%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(74,89,61,0.1);
+        }
+
+        .step-slider .slide {
+            width: 50px;
+    height: 50px;
+    background: #8e7757a1;
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    margin-left: 90px;
+    margin-right: 200px;
+        }
+        .step-slider .slide:hover{
+            background-color: #F9F6F1;
+        }
+
+        .step-slider .slide::before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            background: #6B8E23;
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+        }
+
+        #slide_1:checked ~ .step-slider .slide-1::before,
+        #slide_2:checked ~ .step-slider .slide-2::before,
+        #slide_3:checked ~ .step-slider .slide-3::before {
+            transform: scaleX(1);
+        }
+        .compact-title {
+    max-width: 940px;
+    margin: 10px 0px 0 100px;
+    padding: 20px 30px !important;
+}
+
+.compact-title h2 {
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+}
+
+.compact-title p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* 步骤容器宽度调整 */
+.steps-container {
+    width: 90%; /* 改为百分比自适应 */
+    max-width: 1000px; /* 增加最大宽度限制 */
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .compact-title {
+        margin: 0 auto 20px;
+        padding: 15px 20px !important;
+    }
+    
+    .steps-container {
+        width: 95%;
+        height: auto;
+        min-height: 400px;
+    }
+    
+    .step-card {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+    
+    .step-card .img {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+    }
+}
+
+  /* 智能茶席样式 */
+  .digital-section {
+            padding: 40px 0;
+            margin-bottom: 50px;
+        }
+
+        .lab-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .workbench {
+            background-image: url(../images/tea_art/teamakebg.png);
+            height: 600px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .tea-object {
+            position: absolute;
+            cursor: grab;
+            will-change: transform;
+            transition: transform 0.2s ease-out;
+        }
+
+        #teapot {
+            width: 150px;
+            right: 50px;
+            top: 400px;
+            z-index: 2;
+            filter: drop-shadow(3px 5px 2px rgba(0,0,0,0.2));
+            transform-origin: 75% 60%;
+        }
+
+        #teacup {
+            width: 120px;
+            right: 200px;
+            bottom: 100px;
+            filter: drop-shadow(2px 3px 2px rgba(0,0,0,0.15));
+        }
+
+
+
+        /* 茶水粒子效果 */
+        .tea-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(139, 69, 19, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes particleAnimation {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* 水波纹效果 */
+        @keyframes ripple {
+            0% { 
+                transform: scale(0.3); 
+                opacity: 0.8; 
+            }
+            100% { 
+                transform: scale(2); 
+                opacity: 0; 
+            }
+        }
+
+        .ripple {
+            position: absolute;
+            pointer-events: none;
+            background: rgba(139, 69, 19, 0.2);
+            border-radius: 50%;
+            transform-origin: center;
+            animation: ripple 1s ease-out forwards;
+        }
+
+        /* 控制面板样式 */
+        .control-panel {
+
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            backdrop-filter: blur(5px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #6b8c42;
+            outline: none;
+        }
+
+        .timer {
+            background: #f0f0f0;
+            height: 40px;
+            border-radius: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .timer-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #6b8c42 0%, #8abf7e 100%);
+            width: 0;
+            transition: width 1s linear;
+        }
+
+        .timer-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #333;
+            font-weight: bold;
+        }
+
+        .video-container {
+            margin-top: 25px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 复位轨迹效果 */
+        #teapot::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: rgba(0,0,0,0.1);
+            bottom: -10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #teapot.resetting::after {
+            opacity: 1;
+            animation: resetTrail 0.8s linear forwards;
+        }
+
+        @keyframes resetTrail {
+            from { width: 100% }
+            to { width: 0 }
+        }
+
+        /* 答题游戏样式 */
+.quiz-container {
+    max-width: 960px;
+    margin: 10rem auto;
+    padding: 2rem;
+    background: #a9b69d;
+    background: url('../images/tea_art/quiz_card.png') no-repeat;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(61,84,56,0.1);
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #c5a173;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.current-score {
+    color: #3d5438;
+    font-size: 1.8em;
+    font-family: '楷体';
+}
+
+.streak-count {
+    color: #c5a173;
+    padding: 0.3rem 0.6rem;
+    background: #f3e6d1;;
+    border-radius: 4px;
+}
+
+
+
+.question-card {
+    min-height: 300px;
+}
+
+.question-text {
+    font-size: 1.3rem;
+    color: #3d5438;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    font-family: '楷体';
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.option-btn {
+    padding: 1.2rem;
+    border: 2px solid #f0e6dd;
+    border-radius: 8px;
+    background: #f3e6d175;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.option-btn:hover:not(.correct):not(.wrong) {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(61,84,56,0.1);
+}
+
+.option-btn.correct {
+    background: #e8f5e9;
+    border-color: #81c784;
+    animation: correct-bounce 0.5s ease;
+}
+
+.option-btn.wrong {
+    background: #ffebee;
+    border-color: #ef9a9a;
+    animation: wrong-shake 0.4s ease;
+}
+
+@keyframes correct-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes wrong-shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(8px); }
+    50% { transform: translateX(-8px); }
+    75% { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+}
+
+.result-card {
+    text-align: center;
+    padding: 2rem;
+}
+
+.result-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: result-pop 0.6s ease;
+}
+
+@keyframes result-pop {
+    0% { transform: scale(0); }
+    60% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.restart-btn {
+    padding: 1rem 2rem;
+    background: #3d5438;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.restart-btn:hover {
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none;
+}
+
+.img {
+    width: 240px;
+    height: 240px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    background: #EEEADE; /* 备用背景色 */
+}
+
+.adaptive-image {
+    /* 核心适配属性 */
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 关键属性 */
+    object-position: center center;
+    
+    /* 高级适配策略 */
+    display: block;
+    margin: auto;
+    transition: transform 0.3s ease;
+    
+    /* 安全边界 */
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+    .img {
+        width: 100%;
+        height: 200px; /* 移动端高度调整 */
+    }
+    
+    .adaptive-image {
+        object-fit: cover; /* 移动端改用覆盖式 */
+        object-position: top center;
+    }
+}
+.content p{
+    font-size: 20px;
+}
+
+    </style>
+</head>
+<body>
+
+ 
+    <!-- 智能茶席模块 -->
+    <section class="digital-section">
+        <div class="lab-container">
+
+            <div class="introduction-box " >
+                <h2 style=" font-size: 30px;">虚拟茶室</h2>
+                <p>触控启动虚拟茶席，沉浸式解锁千年茗香</p>
+            </div>
+
+            <div class="workbench">
+                <img src="../images/tea_art/teapot.png" id="teapot" class="tea-object" draggable="false">
+                <img src="../images/tea_art/teacup.png" id="teacup" class="tea-object" draggable="false">
+                <div id="teaStream" class="tea-stream"></div>
+            </div>
+
+            <div class="control-panel">
+                <h2>茶艺控制台</h2>
+                <div class="form-group">
+                    <label>选择茶叶：</label>
+                    <select id="teaType" class="form-control">
+                        <option value="green">绿茶</option>
+                        <option value="oolong">乌龙茶</option>
+                        <option value="black">红茶</option>
+                    </select>
+                </div>
+                <div class="timer">
+                    <div class="timer-progress"></div>
+                    <div class="timer-text">02:00</div>
+                </div>
+                <div class="video-container">
+                    <video id="teaVideo" width="100%" controls></video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="simplified-brewing">
+        <div class="master-container">
+            <div class="introduction-box compact-title">
+                <h2>井冈翠绿冲泡步骤详解</h2>
+                <p>三步掌握传统茶艺，体验精致冲泡流程</p>
+            </div>
+        </div>
+        <div class="steps-container">
+            
+            <input type="radio" name="select" id="slide_1" checked hidden>
+            <input type="radio" name="select" id="slide_2" hidden>
+            <input type="radio" name="select" id="slide_3" hidden>
+
+            <div class="step-slider">
+                <label for="slide_1" class="slide slide-1"></label>
+                <label for="slide_2" class="slide slide-2"></label>
+                <label for="slide_3" class="slide slide-3"></label>
+            </div>
+
+            <div class="step-card card-1">
+                <div class="img">
+                    <img src="../images/tea_art/1.png" alt="温杯洁具" class="adaptive-image">
+                </div>
+                <div class="content">
+                    <h2>01 温杯洁具</h2>
+                    <p>
+                        用热水冲淋茶具，提高茶具温度。具体操作：
+                        <br>▌选具：选用150-200ml白瓷盖碗（配玻璃公道杯）
+                        <br>▌水温：取100℃沸水，建议选用TDS值＜50的纯净水
+                        <br>▌注水：壶嘴距杯口5cm高冲，沿内壁螺旋注水形成漩涡，注至八分满（距杯沿1.5cm）
+                        <br>▌静置：冬季静置90秒/夏季60秒，期间加盖保持温度
+                        <br>▌倒水：倾斜60°缓慢倒尽，倒毕倒扣于竹制茶巾上沥水
+                        <br> 注意事项：紫砂壶需内外冲淋两次，玻璃器皿需提前室温回温防炸裂
+                        </p>
+                </div>
+            </div>
+
+            <div class="step-card card-2">
+                <div class="img">
+                    <img src="../images/tea_art/2.png" alt="置茶闻香" class="adaptive-image">
+                </div>
+                <div class="content">
+                    <h2>02 置茶闻香</h2>
+                    <p>
+                        将茶叶投入温热的盖碗中，具体操作：
+                        <br>▌投茶量：按1:20茶水比，150ml盖碗投茶7.5g（铺满碗底2层）
+                        <br>▌手法：使用竹制茶匙呈45°角拨入茶叶，避免手部直接接触
+                        <br>▌摇香：顺时针旋转盖碗3周（手腕悬空发力，幅度约15°）
+                        <br>▌闻香：开盖呈30°角，鼻尖距碗口3cm深嗅3秒
+                        <br>▌温度控制：保持盖碗温度60-65℃，可用热水浇淋外壁保温
+                        <br>注意事项：新茶需提前醒茶30分钟，老茶需保持投茶时器皿干燥
+                        </p>
+                </div>
+            </div>
+
+            <div class="step-card card-3">
+                <div class="img">
+                    <img src="../images/tea_art/3.png" alt="冲泡出汤" class="adaptive-image">
+                </div>
+                <div class="content">
+                    <h2>03 冲泡出汤</h2>
+                    <p>
+                        沿盖碗边缘定点注水，具体操作：
+                        <br>▌注水方式：采用"凤凰三点头"手法，水流高度从30cm渐降至10cm
+                        <br>▌水流控制：柱状水流直径≈3mm，流速保持200ml/15秒
+                        <br>▌浸泡时间：首泡30秒（春茶）/20秒（夏茶），后续每泡递增5秒
+                        <br>▌出汤技巧：盖碗倾斜75°角匀速出汤，3秒内完成沥净
+                        <br>注意事项：避免直冲茶叶，岩茶类需配合"环壁注水"法
+                        <br>专家建议：选用pH7.2±0.3的天然山泉水可提升茶汤鲜爽度
+                        </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="etiquette-card" id="quiz">
+        
+        <div class="quiz-container">
+            <div class="introduction-box">
+                <h2>茶道知识挑战</h2>
+            </div>
+            <div class="quiz-header">
+                <div class="quiz-progress">
+                    <div class="progress-bar"></div>
+                    <span class="current-score">0</span> 分
+                </div>
+                <div class="quiz-stats">
+                    <span class="streak-count">0 连对</span>
+
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3 class="question-text"></h3>
+                <div class="options-grid"></div>
+            </div>
+            
+            <div class="result-card hidden">
+                <div class="result-icon">🍵</div>
+                <h3>挑战完成！</h3>
+                <p>最终得分：<span class="final-score">0</span> 分</p>
+                <button class="restart-btn">再来一局</button>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script>
+
+// 渐进式交互
+document.querySelectorAll('.step').forEach((step, index) => {
+    step.addEventListener('click', () => {
+        // 切换步骤激活状态
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        step.classList.add('active');
+        
+        // 显示对应内容
+        document.querySelectorAll('.step-card').forEach(card => {
+            card.style.display = 'none';
+        });
+        document.querySelector(`.step-card[data-step="${index + 1}"]`).style.display = 'block';
+    });
+});
+
+// 智能茶席交互
+const teaConfig = {
+            green: { temp: 80, time: 120, video: '../images/tea_art/绿茶.mp4', color: 'rgba(155, 187, 89, 0.8)' },
+            oolong: { temp: 95, time: 180, video: '../images/tea_art/乌龙.mp4', color: 'rgba(212, 165, 94, 0.8)' },
+            black: { temp: 90, time: 240, video: '../images/tea_art/红茶.mp4', color: 'rgba(140, 80, 66, 0.8)' }
+        };
+
+        let currentBrewing = null;
+        let allowPouring = false;
+        let isPouring = false;
+        let lastPourTime = 0;
+        let particleInterval = null;
+        let initialPosition = { x: 0, y: 0 };
+
+        const teapot = document.getElementById('teapot');
+        const teacup = document.getElementById('teacup');
+        const teaStream = document.getElementById('teaStream');
+
+        // 初始化茶壶位置
+        function initTeapotPosition() {
+            const rect = teapot.getBoundingClientRect();
+            initialPosition = {
+                x: rect.left - teapot.parentElement.getBoundingClientRect().left,
+                y: rect.top - teapot.parentElement.getBoundingClientRect().top
+            };
+            teapot.dataset.x = 0;
+            teapot.dataset.y = 0;
+        }
+        initTeapotPosition();
+
+        interact('#teapot').draggable({
+            inertia: {
+                resistance: 5,
+                minSpeed: 50,
+                endSpeed: 10
+            },
+            modifiers: [
+                interact.modifiers.restrictRect({
+                    restriction: 'parent',
+                    endOnly: true
+                })
+            ],
+            autoScroll: true,
+            listeners: {
+                start: (event) => {
+                    event.target.style.transition = 'none';
+                    event.target.style.cursor = 'grabbing';
+                },
+                move: dragMoveListener,
+                end: (event) => {
+                    event.target.style.cursor = 'grab';
+                    event.target.style.transition = 'transform 0.2s ease-out';
+                    handleDragEnd(event);
+                }
+            }
+        });
+
+        function dragMoveListener(event) {
+            const target = event.target;
+            const x = (parseFloat(target.dataset.x) || 0) + event.dx;
+            const y = (parseFloat(target.dataset.y) || 0) + event.dy;
+
+            target.dataset.x = x;
+            target.dataset.y = y;
+
+            const currentRotation = target.dataset.rotation || 0;
+            target.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${currentRotation}deg)`;
+            
+            requestAnimationFrame(() => {
+                checkCollision();
+                if (isPouring) {
+                    updateTeaStream();
+                    createTeaParticles();
+                }
+            });
+        }
+
+        function checkCollision() {
+            if (!allowPouring || isPouring) return;
+
+            const teapotRect = teapot.getBoundingClientRect();
+            const teacupRect = teacup.getBoundingClientRect();
+
+            const teapotSpout = {
+                x: teapotRect.right - teapotRect.width * 0.25,
+                y: teapotRect.bottom - teapotRect.height * 0.4
+            };
+
+            const teacupTop = {
+                x: teacupRect.left + teacupRect.width / 2,
+                y: teacupRect.top
+            };
+
+            const distance = Math.hypot(
+                teapotSpout.x - teacupTop.x,
+                teapotSpout.y - teacupTop.y
+            );
+
+            if (distance < 130 && !isPouring) {
+                startPouring();
+            }
+        }
+
+        function startPouring() {
+            if (Date.now() - lastPourTime < 500) return;
+            
+            isPouring = true;
+            lastPourTime = Date.now();
+
+            const x = parseFloat(teapot.dataset.x) || 0;
+            const y = parseFloat(teapot.dataset.y) || 0;
+
+            teapot.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            teapot.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(-45deg)`;
+            teapot.dataset.rotation = -45;
+
+            teaStream.style.opacity = '1';
+            updateTeaStream();
+            
+            particleInterval = setInterval(createTeaParticles, 50);
+            createRippleEffect();
+
+            setTimeout(stopPouring, 3000);
+        }
+
+        function stopPouring() {
+            isPouring = false;
+            
+            // 添加复位动画
+            teapot.classList.add('resetting');
+            teapot.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            teapot.style.transform = `translate3d(0, 0, 0) rotate(0deg)`;
+            teapot.dataset.x = 0;
+            teapot.dataset.y = 0;
+            teapot.dataset.rotation = 0;
+
+            // 重置状态
+            setTimeout(() => {
+                teapot.style.transition = 'transform 0.2s ease-out';
+                teapot.classList.remove('resetting');
+                teaStream.style.opacity = '0';
+            }, 800);
+
+            clearInterval(particleInterval);
+        }
+
+        function createTeaParticles() {
+            const teacupRect = teacup.getBoundingClientRect();
+            const particle = document.createElement('div');
+            particle.className = 'tea-particle';
+            
+            const startX = teacupRect.left + teacupRect.width / 2;
+            const startY = teacupRect.top;
+            
+            particle.style.left = `${startX}px`;
+            particle.style.top = `${startY}px`;
+            
+            const angle = Math.random() * Math.PI * 2;
+            const distance = Math.random() * 30 + 10;
+            const tx = Math.cos(angle) * distance;
+            const ty = Math.sin(angle) * distance + 20;
+            
+            particle.style.setProperty('--tx', `${tx}px`);
+            particle.style.setProperty('--ty', `${ty}px`);
+            
+            particle.style.animation = 'particleAnimation 0.8s ease-out forwards';
+            document.body.appendChild(particle);
+            
+            particle.addEventListener('animationend', () => {
+                particle.remove();
+            });
+        }
+
+        function updateTeaStream() {
+            if (!isPouring) return;
+
+            const teapotRect = teapot.getBoundingClientRect();
+            const teacupRect = teacup.getBoundingClientRect();
+
+            const startX = teapotRect.right - teapotRect.width * 0.25;
+            const startY = teapotRect.bottom - teapotRect.height * 0.4;
+            const endX = teacupRect.left + teacupRect.width / 2;
+            const endY = teacupRect.top + 10;
+
+            const angle = Math.atan2(endY - startY, endX - startX);
+            const length = Math.hypot(endX - startX, endY - startY);
+
+            teaStream.style.height = `${length}px`;
+            teaStream.style.left = `${startX}px`;
+            teaStream.style.top = `${startY}px`;
+            teaStream.style.transform = `rotate(${angle}rad)`;
+        }
+
+        function createRippleEffect() {
+            if (!isPouring) return;
+
+            const teacupRect = teacup.getBoundingClientRect();
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            
+            const size = 20;
+            ripple.style.width = `${size}px`;
+            ripple.style.height = `${size}px`;
+            ripple.style.left = `${teacupRect.left + teacupRect.width / 2 - size / 2}px`;
+            ripple.style.top = `${teacupRect.top + 10 - size / 2}px`;
+
+            document.body.appendChild(ripple);
+            ripple.addEventListener('animationend', () => ripple.remove());
+
+            if (isPouring) {
+                setTimeout(() => createRippleEffect(), 200);
+            }
+        }
+
+        function handleDragEnd(event) {
+            if(!isPouring) {
+                const target = event.target;
+                const currentRotation = target.dataset.rotation || 0;
+                target.style.transform = `translate3d(${target.dataset.x}px, ${target.dataset.y}px, 0) rotate(${currentRotation}deg)`;
+            }
+        }
+
+        document.getElementById('teaType').addEventListener('change', function() {
+            setupBrewingProcess(this.value);
+        });
+
+        function setupBrewingProcess(teaType) {
+            if (currentBrewing) clearInterval(currentBrewing);
+            allowPouring = false;
+            isPouring = false;
+            
+            const config = teaConfig[teaType];
+            document.getElementById('teaVideo').src = config.video;
+            startTimer(config.time);
+        }
+
+        function startTimer(seconds) {
+            let remaining = seconds;
+            document.querySelector('.timer-progress').style.width = '0%';
+            
+            currentBrewing = setInterval(() => {
+                remaining--;
+                const progress = (1 - remaining / seconds) * 100;
+                document.querySelector('.timer-progress').style.width = `${progress}%`;
+                
+                const mins = Math.floor(remaining / 60);
+                const secs = remaining % 60;
+                document.querySelector('.timer-text').textContent = 
+                    `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+                if (remaining <= 0) {
+                    clearInterval(currentBrewing);
+                    allowPouring = true;
+                    document.querySelector('.timer-text').textContent = "准备倒茶";
+                }
+            }, 1000);
+        }
+
+        setupBrewingProcess('green');
+
+        const teaQuiz = [
+    // 井冈翠绿核心冲泡（12题）
+    {
+        question: "井冈翠绿特级茶最佳冲泡水温？",
+        options: ["75-80℃", "85-90℃", "95-100℃", "冷水冲泡"],
+        correct: 0,
+        explain: "实验数据：80℃水温茶氨酸浸出率比100℃高23%"
+    },
+    {
+        question: "其特色'中投法'的正确步骤是？",
+        options: ["水→茶→水", "茶→水→茶", "半水→茶→满水", "茶→半水→满水"],
+        correct: 2,
+        explain: "先注1/3水，投茶后再注至七分满"
+    },
+    {
+        question: "玻璃杯冲泡时注水角度建议？",
+        options: ["45°沿壁注水", "90°定点高冲", "30°螺旋注水", "60°中心注水"],
+        correct: 0,
+        explain: "45°角形成涡流加速茶叶舒展"
+    },
+    {
+        question: "最佳茶水比例（体积比）？",
+        options: ["1:50", "1:30", "1:75", "1:100"],
+        correct: 1,
+        explain: "3g茶（约铺满杯底）配150ml水效果最佳"
+    },
+    {
+        question: "首泡最佳浸泡时间？",
+        options: ["30秒", "90秒", "150秒", "180秒"],
+        correct: 1,
+        explain: "电子显微镜观察显示90秒细胞壁完全舒展"
+    },
+    {
+        question: "第二泡应如何调整？",
+        options: ["水温+5℃", "时间+30秒", "注水高度+10cm", "水量减半"],
+        correct: 0,
+        explain: "提升水温至85℃激发深层物质"
+    },
+
+    // 其他茶类对照（6题）
+    {
+        question: "下列哪项是普洱茶特有冲泡要求？",
+        options: ["快速出汤", "沸水洗茶", "留根泡法", "冰水醒茶"],
+        correct: 1,
+        explain: "需用100℃沸水快速洗茶2次（＜5秒/次）"
+    },
+    {
+        question: "武夷岩茶冲泡核心要素？",
+        options: ["高水温/快出汤", "低水温/慢浸泡", "间隔摇香", "多次洗茶"],
+        correct: 0,
+        explain: "100℃沸水+8秒快出，激发岩骨花香"
+    },
+    {
+        question: "碧螺春与井冈翠绿冲泡差异主要在？",
+        options: ["投茶顺序", "注水力度", "器具材质", "环境湿度"],
+        correct: 0,
+        explain: "碧螺春需上投法（先水后茶）保护茶毫"
+    },
+
+    // 混合题型（7题）
+    {
+        question: "哪种情况需特别注意水温控制？",
+        options: ["老丛水仙", "陈年普洱", "明前翠绿", "茉莉花茶"],
+        correct: 2,
+        explain: "嫩芽绿茶对水温敏感，误差±3℃即影响口感"
+    },
+    {
+        question: "评审冲泡时，与龙井操作相同的是？",
+        options: ["3g茶/150ml", "5分钟浸泡", "瓷碗冲泡", "三次过滤"],
+        correct: 0,
+        explain: "GB/T 23776规定绿茶评审通用标准"
+    }
+];
+        class TeaQuiz {
+    constructor() {
+        this.questions = [...teaQuiz];
+        this.currentQ = null;
+        this.score = 0;
+        this.streak = 0;
+        
+        this.init();
+    }
+
+    init() {
+        this.shuffleQuestions();
+        this.updateScore();
+        this.showNextQuestion();
+        this.setupEventListeners();
+    }
+
+    shuffleQuestions() {
+        this.questions = this.questions
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 10);
+    }
+
+    startTimer() {
+        this.timer = setInterval(() => {
+            this.timeLeft--;
+            document.querySelector('.timer').textContent = this.timeLeft;
+            if(this.timeLeft <= 0) this.endGame();
+        }, 1000);
+    }
+
+    showNextQuestion() {
+        if(this.questions.length === 0) return this.endGame();
+        
+        this.currentQ = this.questions.pop();
+        this.renderQuestion();
+        this.updateProgress();
+    }
+
+    renderQuestion() {
+        const q = this.currentQ;
+        document.querySelector('.question-text').textContent = q.question;
+        
+        const optionsGrid = document.querySelector('.options-grid');
+        optionsGrid.innerHTML = q.options.map((opt, i) => `
+            <button class="option-btn" data-index="${i}">${opt}</button>
+        `).join('');
+    }
+
+    handleAnswer(selectedIndex) {
+        const isCorrect = selectedIndex === this.currentQ.correct;
+        const options = document.querySelectorAll('.option-btn');
+        
+        options.forEach(btn => {
+            btn.disabled = true;
+            if(btn.dataset.index == this.currentQ.correct) {
+                btn.classList.add('correct');
+            }
+            if(btn.dataset.index == selectedIndex && !isCorrect) {
+                btn.classList.add('wrong');
+            }
+        });
+
+        if(isCorrect) {
+            // 新计分规则：基础分8分 + 连对奖励2分
+            this.score += 8 + Math.min(this.streak, 2)*2;
+            this.streak++;
+        } else {
+            this.streak = 0;
+        }
+
+        this.updateScore();
+        setTimeout(() => this.showNextQuestion(), 1500);
+    }
+
+    updateProgress() {
+        const progress = (1 - this.questions.length / 10) * 100;
+        document.querySelector('.progress-bar').style.width = `${progress}%`;
+    }
+
+    updateScore() {
+        document.querySelector('.current-score').textContent = this.score;
+        document.querySelector('.streak-count').textContent = `${this.streak} 连对`;
+    }
+
+    endGame() {
+        document.querySelector('.question-card').classList.add('hidden');
+        document.querySelector('.result-card').classList.remove('hidden');
+        document.querySelector('.final-score').textContent = this.score;
+    }
+
+    setupEventListeners() {
+        document.querySelector('.options-grid').addEventListener('click', e => {
+            if(e.target.classList.contains('option-btn')) {
+                this.handleAnswer(parseInt(e.target.dataset.index));
+            }
+        });
+
+        document.querySelector('.restart-btn').addEventListener('click', () => {
+            location.reload();
+        });
+    }
+}
+
+    // 初始化游戏
+    new TeaQuiz();
+    </script>
+</body>
+</html>
